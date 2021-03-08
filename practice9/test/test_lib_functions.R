@@ -73,3 +73,9 @@ test_that("solve: arguments boundary cases", {
   expect_error(solve(rbind(c(1, 0), c(0, 1)), c(2, 3), c(1, 1), count = 0))
   expect_error(solve(rbind(c(1, 0), c(0, 1)), c(2, 3), c(1, 1), eps = -1))
 })
+
+
+test_that("Alter-Johns: arguments boundary cases", {
+  expect_error(AlterJohns("HELP"))
+  expect_error(AlterJohns(c("H", "E", "L", "P", "!!!")))
+})
