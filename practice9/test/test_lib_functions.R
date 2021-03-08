@@ -72,6 +72,9 @@ test_that("solve: arguments boundary cases", {
   
   expect_error(solve(rbind(c(1, 0), c(0, 1)), c(2, 3), c(1, 1), count = 0))
   expect_error(solve(rbind(c(1, 0), c(0, 1)), c(2, 3), c(1, 1), eps = -1))
+  
+  expect_error(solve(rbind(c(2, 1), c(1, -2)), c(2, 3), c(1, 1)))
+  expect_error(solve(rbind(c(10, 2, -1), c(-2, -6, -1), c(1, -3, 12)), c(5, 24.42, 36), rnorm(3)))
 })
 
 
