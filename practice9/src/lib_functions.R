@@ -57,12 +57,12 @@ AlterJohns <- function(y) {
 }
 
 
-solve <- function(A, f, u0, count, eps) {
+solve <- function(A, f, u0, count = 10e5, eps = 1e-7) {
   #' Итерационный метод решения СЛАУ
   stopifnot(is.matrix(A) & length(A[1,]) == length(A[,1]))
   stopifnot(is.vector(f) & length(f) == length(A[1,]))
   stopifnot(is.vector(u0) & length(u0) == length(f))
-  stopifnot(is.integer(count) & count %% 1 == 0 & count > 0)
+  stopifnot(is.numeric(count) & count %% 1 == 0 & count > 0)
   stopifnot(is.numeric(eps) & eps > 0)
   
   n <- length(f)

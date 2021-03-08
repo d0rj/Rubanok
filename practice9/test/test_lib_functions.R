@@ -51,3 +51,25 @@ test_that("out_of_trend: arguments boundary cases", {
   
   expect_error(out_of_trend(c(10, 20, 10, 20, 10), method = "Some beleberda"))
 })
+
+
+test_that("solve: Simple tests", {
+  expect_equal(solve(rbind(c(1, 0), c(0, 1)), c(2, 3), c(1, 1)), c(2, 3), tolerance = 1e-7)
+  expect_equal(solve(rbind(c(1, 0), c(0, 1)), c(2, 3), rnorm(2)), c(2, 3), tolerance = 1e-7)
+  
+  expect_equal(solve(rbind(c(2, 0), c(0, 2)), c(4, 6), c(1, 1)), c(2, 3), tolerance = 1e-7)
+  expect_equal(solve(rbind(c(2, 0), c(0, 2)), c(4, 6), rnorm(2)), c(2, 3), tolerance = 1e-7)
+})
+
+
+test_that("solve: arguments boundary cases", {
+  expect_error(solve(c(1, 2, 3), c(1, 2, 3), c(1, 2, 3)))
+  expect_error(solve(c(1, 2, 3), 1, c(1, 2, 3)))
+  expect_error(solve(c(1, 2, 3), c(1, 2, 3), 1))
+  
+  expect_error(solve(rbind(c(1, 0), c(0, 1)), c(1, 2, 3), c(1, 1)))
+  expect_error(solve(rbind(c(1, 0), c(0, 1)), c(2, 3), c(1, 1, 1)))
+  
+  expect_error(solve(rbind(c(1, 0), c(0, 1)), c(2, 3), c(1, 1), count = 0))
+  expect_error(solve(rbind(c(1, 0), c(0, 1)), c(2, 3), c(1, 1), eps = -1))
+})
